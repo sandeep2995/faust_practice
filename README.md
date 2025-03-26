@@ -52,12 +52,35 @@ Before running the Faust App, Zookeeper and Kafka needs to be run. The steps are
     $KAFKA_HOME/bin/kafka-server-start $KAFKA_HOME/config/server.properties
     ```
     The sample output should look something like ![kafka screenshot](screenshots/kafka_running.png "kafka")
+- Install **Python 3.11** (due to compatability issues with Python 3.13)
+    ```bash
+    brew install python@3.11
+    ```
+- Create a Python virtual environment (i your favorite place) and activate it.
+    ```bash
+    python3.11 -m venv py3_11_venv
+    source py3_11_venv/bin/activate
+    ```
 
-# How to Run it?
+# How to Run the Faust App?
 - Install the packages and dependencies from *requirements.txt* from commandline using
-```bash
-pip install -r requirements.txt
-```
+    ```bash
+    pip install -r requirements.txt
+    ```
+- Start the worker (based on the code in **hello_world.py**).
+    ```bash
+    faust -A hello_world worker -l info
+    ```
+    you should see sample output like ![worker screenshot](screenshots/worker.png "worker")
+
+- Now, you can send the messages to the *wishes* topic.
+    ```bash
+    faust -A hello_world send @wish "Hello Faust"
+    faust -A hello_world send wishes "Hi Hallo, Faust"
+    ```
+    The sample output should look something like ![hello_world_msg screenshot](screenshots/hello_world_msg.png "hello_world_msg")
+- You can also see the above sent messages being processed by the worker as ![hello_world_in_worker screenshot](screenshots/hello_world_in_worker.png "hello_world_in_worker")
+
 
 ## Terminologies
 - **Stream**: unbounded data that is accessible over the time.
