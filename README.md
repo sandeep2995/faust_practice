@@ -80,6 +80,8 @@ Before running the Faust App, Zookeeper and Kafka needs to be run. The steps are
     ```
     The sample output should look something like ![hello_world_msg screenshot](screenshots/hello_world_msg.png "hello_world_msg")
 - You can also see the above sent messages being processed by the worker as ![hello_world_in_worker screenshot](screenshots/hello_world_in_worker.png "hello_world_in_worker")
+- In case if you are wondering where these messages are stored, you can find them at `log.dirs`. That is, in `/tmp/kafka-logs` directory.
+Each topic has its own directory in this logs directory and contents of the each topic directory looks something like ![kafka_logs_wishes screenshot](screenshots/kafka_logs_wishes.png "kafka_logs_wishes")
 
 
 ## Terminologies
